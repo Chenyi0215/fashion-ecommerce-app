@@ -3,6 +3,8 @@ import dotenv from 'dotenv';
 import connectDB from './config/db.js';
 import userRoutes from './routes/userRoutes.js'; // 引入 user 路由
 import productRoutes from './routes/productRoutes.js';
+import orderRoutes from './routes/orderRoutes.js';
+import { notFound, errorHandler } from './middleware/errorMiddleware.js';
 
 dotenv.config(); // 讓 .env 檔案中的變數可以被讀取
 
@@ -17,11 +19,15 @@ app.get('/', (req, res) => {
   res.send('API is running...');
 });
 
+app.get('/api/config/paypal', (req, res) =>
+  res.send({ clientId: process.env.PAYPAL_CLIENT_ID })
+);
+
 app.use('/api/users', userRoutes); // 將所有 /api/users 的請求導向到 userRoutes
-
 app.use('/api/products', productRoutes);
+app.use('/api/orders', orderRoutes);
 
-import { notFound, errorHandler } from './middleware/errorMiddleware.js';
+
 app.use(notFound);
 app.use(errorHandler);
 

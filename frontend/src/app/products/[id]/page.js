@@ -1,24 +1,20 @@
 import React from 'react';
-import ProductDetails from '@/components/ProductDetails'; // 現在這個引入會成功
+import ProductDetails from '@/components/ProductDetails';
 
-// 這是伺服器元件，專門獲取資料
 const ProductPage = async ({ params }) => {
-  const { id } = params;
-
   try {
-    const res = await fetch(`http://localhost:5000/api/products/${id}`, {
+    // ## 核心修正：直接在 fetch 中使用 params.id ##
+    // 我們不再預先解構 const { id } = params;
+    const res = await fetch(`http://localhost:5000/api/products/${params.id}`, {
       cache: 'no-store',
     });
 
-    // 檢查 res.ok 是否為 true
     if (!res.ok) {
-       // 如果商品不存在 (例如 404)，回傳一個提示訊息
        return <ProductDetails product={null} />;
     }
 
     const product = await res.json();
 
-    // 獲取資料後，傳遞給客戶端元件去渲染
     return <ProductDetails product={product} />;
 
   } catch (error) {

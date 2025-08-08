@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@paypal/react-paypal-js": "^8.8.3",
     "axios": "^1.11.0",
     "bootstrap": "^5.3.7",
     "next": "15.4.6",
