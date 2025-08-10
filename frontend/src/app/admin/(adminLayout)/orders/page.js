@@ -1,6 +1,6 @@
 'use client';
 import { useState, useEffect } from 'react';
-import { Table, Button } from 'react-bootstrap';
+import { Table, Button, Spinner } from 'react-bootstrap';
 import { FaTimes } from 'react-icons/fa';
 import Link from 'next/link';
 import axios from 'axios';
@@ -31,7 +31,15 @@ const AdminOrdersPage = () => {
     }
   }, [userInfo]);
 
-  if (loading) return <p>載入中...</p>;
+    if (loading) {
+    return (
+      <div className='d-flex justify-content-center'>
+        <Spinner animation='border' role='status'>
+          <span className='visually-hidden'>Loading...</span>
+        </Spinner>
+      </div>
+    );
+  }
   if (error) return <p style={{ color: 'red' }}>{error}</p>;
 
   return (

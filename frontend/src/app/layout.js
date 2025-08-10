@@ -5,6 +5,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { StoreProvider } from '@/contexts/StoreContext';
 
+
 export const metadata = {
   title: 'chooWear',
   description: '由 Next.js, Node.js, MongoDB 驅動',

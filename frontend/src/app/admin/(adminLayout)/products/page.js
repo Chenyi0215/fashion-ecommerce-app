@@ -1,14 +1,17 @@
 'use client';
 import { useState, useEffect } from 'react';
-import { Table, Button, Row, Col } from 'react-bootstrap';
+import { Table, Button, Row, Col, } from 'react-bootstrap';
 import { FaEdit, FaTrash } from 'react-icons/fa';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import axios from 'axios';
 import { useStore } from '@/contexts/StoreContext';
+import { toast } from 'react-toastify'; 
 
 const AdminProductsPage = () => {
   const [products, setProducts] = useState([]);
   const { userInfo } = useStore();
+  const router = useRouter(); 
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -34,7 +37,23 @@ const AdminProductsPage = () => {
     }
   };
 
-  const createProductHandler = async () => { /* 之後會實作 */ };
+  const createProductHandler = async () => {
+    if (window.confirm('您確定要建立一個新商品嗎？')) {
+      try {
+        const config = {
+          headers: { Authorization: `Bearer ${userInfo.token}` },
+        };
+        // 呼叫後端 API 建立商品，第二個參數傳入空物件
+        const { data: createdProduct } = await axios.post('/api/products', {}, config);
+        toast.success('商品已建立');
+        // 導向到新商品的編輯頁面
+        router.push(`/admin/products/${createdProduct._id}/edit`);
+      } catch (error) {
+        toast.error(error.response?.data?.message || '建立商品失敗');
+      }
+    }
+  };
+
 
   return (
     <Row>

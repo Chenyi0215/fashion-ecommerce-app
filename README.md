@@ -5,21 +5,6 @@
 **➡️ 強烈建議：** 在這裡放上您部署後的線上 DEMO 連結！
 
 ---
-
-## 專案畫面截圖 (Screenshots)
-
-**強烈建議您**將自己的專案畫面截圖後，取代下方的圖片連結。一份有圖片的 README 會讓您的專案看起來專業十倍！
-
-| 首頁 | 商品詳情 |
-| :---: | :---: |
-| ![首頁截圖](https://i.imgur.com/your-homepage-image.png) | ![商品詳情頁截圖](https://i.imgur.com/your-productpage-image.png) |
-
-| 購物車 | 管理員後台 - 商品管理 |
-| :---: | :---: |
-| ![購物車截圖](https://i.imgur.com/your-cart-image.png) | ![管理員後台截圖](https://i.imgur.com/your-admin-image.png) |
-
----
-
 ## 主要功能 (Features)
 
 ### 一般使用者
