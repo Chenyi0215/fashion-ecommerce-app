@@ -1,17 +1,15 @@
 'use client';
 
-import React, { useState, useEffect } from 'react'; // 1. 引入 useState 和 useEffect
+import React, { useState, useEffect } from 'react'; // 確保這一行沒有引號
 import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap';
 import { FaShoppingCart, FaUser } from 'react-icons/fa';
-import { useStore } from '@/contexts/StoreContext'; 
+import { useStore } from '@/contexts/StoreContext';
 
 const Header = () => {
   const { userInfo, logout } = useStore();
 
-  // 2. 建立一個狀態來追蹤元件是否已在客戶端掛載
   const [isMounted, setIsMounted] = useState(false);
 
-  // 3. 使用 useEffect，它只會在客戶端執行一次
   useEffect(() => {
     setIsMounted(true);
   }, []);
@@ -32,11 +30,29 @@ const Header = () => {
                 <FaShoppingCart /> 購物車
               </Nav.Link>
 
-              {/* 4. 在 isMounted 為 true 之後，才渲染依賴 userInfo 的部分 */}
-              {isMounted && (
-                userInfo ? (
+              {isMounted &&
+                (userInfo ? (
                   <NavDropdown title={userInfo.name} id='username'>
-                    <NavDropdown.Item href='/profile'>個人資料</NavDropdown.Item>
+                    <NavDropdown.Item href='/profile'>
+                      個人資料
+                    </NavDropdown.Item>
+
+                    {userInfo.role === 'admin' && (
+                      <>
+                        <NavDropdown.Divider />
+                        <NavDropdown.Item href='/admin/products'>
+                          商品管理
+                        </NavDropdown.Item>
+                        <NavDropdown.Item href='/admin/orders'>
+                          訂單管理
+                        </NavDropdown.Item>
+                        <NavDropdown.Item href='/admin/users'>
+                          使用者管理
+                        </NavDropdown.Item>
+                      </>
+                    )}
+
+                    <NavDropdown.Divider />
                     <NavDropdown.Item onClick={logoutHandler}>
                       登出
                     </NavDropdown.Item>
@@ -45,9 +61,7 @@ const Header = () => {
                   <Nav.Link href='/login'>
                     <FaUser /> 登入
                   </Nav.Link>
-                )
-              )}
-
+                ))}
             </Nav>
           </Navbar.Collapse>
         </Container>
