@@ -7,54 +7,49 @@
 ---
 ## 主要功能 (Features)
 
-### 一般使用者
-- ✅ **商品瀏覽**：首頁商品列表與單一商品詳情頁。
-- ✅ **完整購物流程**：功能齊全的購物車，使用 `localStorage` 持久化儲存。
-- ✅ **完整結帳流程**：從登入、填寫運送地址、選擇付款方式到最後確認下單。
-- ✅ **真實付款功能**：整合 PayPal 沙盒 (Sandbox) 進行模擬付款。
-- ✅ **使用者認證**：註冊、登入、登出功能，使用 JWT (JSON Web Tokens) 進行狀態管理。
-- ✅ **會員中心**：使用者可以更新個人資料並查看個人的歷史訂單列表。
+### 顧客功能
+- ✅ **商品瀏覽**：響應式的商品列表與單一商品詳情頁。
+- ✅ **完整購物流程**：功能齊全的購物車，使用 `localStorage` 持久化儲存，即使刷新頁面也不會遺失。
+- ✅ **完整結帳流程**：從登入、填寫運送地址、選擇付款方式到最後確認下單的完整使用者體驗。
+- ✅ **真實付款功能**：整合 **PayPal Developer Sandbox** 進行模擬付款，並在成功後即時更新訂單狀態。
+- ✅ **使用者認證**：提供註冊、登入、登出功能，使用 **JWT (JSON Web Tokens)** 進行安全的狀態管理。
+- ✅ **會員中心**：使用者可以更新個人資料（姓名、Email、密碼），並查看個人的歷史訂單列表與狀態。
 
-### 管理員 (Admin)
-- ✅ **受保護的管理員路由**：只有管理員帳號才能進入後台管理區。
-- ✅ **商品管理 (CRUD)**：在後台介面上，對所有商品進行新增、讀取、更新、刪除操作。
-- ✅ **訂單管理**：查看所有使用者的訂單列表，並可將訂單更新為「已出貨」狀態。
-- ✅ **使用者管理**：查看所有註冊使用者列表，並可刪除使用者。
+### 管理員 (Admin) 功能
+- ✅ **受保護的管理員路由**：只有管理員帳號才能進入 `/admin` 開頭的所有後台管理頁面。
+- ✅ **商品管理 (CRUD)**：在後台介面上，對所有商品進行**新增**、**讀取**、**更新**、**刪除**操作。
+- ✅ **訂單管理**：查看所有使用者的訂單列表，並可將訂單手動更新為**「已出貨」**狀態。
+- ✅ **使用者管理 (CRUD)**：查看所有註冊使用者列表，並可**刪除**使用者或將其**提升為管理員**。
 
 ---
 
 ## 使用的技術棧 (Tech Stack)
 
 * **前端 (Frontend)**:
-    * [Next.js](https://nextjs.org/) (React 框架)
-    * [React-Bootstrap](https://react-bootstrap.github.io/) (UI 元件庫)
-    * [Axios](https://axios-http.com/) (HTTP 請求)
-    * [React Icons](https://react-icons.github.io/react-icons/)
-    * **React Context API** (全域狀態管理)
+    * [Next.js](https://nextjs.org/) 13+ (App Router)
+    * [React](https://reactjs.org/) 18+
+    * [React-Bootstrap](https://react-bootstrap.github.io/) & Bootstrap 5
+    * [React Context API](https://reactjs.org/docs/context.html) (全域狀態管理)
+    * [Axios](https://axios-http.com/)
+    * [@paypal/react-paypal-js](https://www.npmjs.com/package/@paypal/react-paypal-js)
+    * [react-toastify](https://fkhadra.github.io/react-toastify/introduction/) (提示訊息)
 
 * **後端 (Backend)**:
     * [Node.js](https://nodejs.org/)
-    * [Express.js](https://expressjs.com/) (Web 框架)
-    * [MongoDB](https://www.mongodb.com/) (資料庫)
-    * [Mongoose](https://mongoosejs.com/) (MongoDB 物件模型)
-    * [JSON Web Tokens (JWT)](https://jwt.io/) (使用者認證)
-    * [BcryptJS](https://github.com/dcodeIO/bcrypt.js) (密碼加密)
-
-* **開發工具**:
-    * VS Code
-    * Git & GitHub (版本控制)
-    * Nodemon (後端熱更新)
-    * Thunder Client (API 測試)
+    * [Express.js](https://expressjs.com/)
+    * [MongoDB](https://www.mongodb.com/) (with [MongoDB Atlas](https://www.mongodb.com/cloud/atlas))
+    * [Mongoose](https://mongoosejs.com/)
+    * [JSON Web Tokens (JWT)](https://jwt.io/)
+    * [BcryptJS](https://github.com/dcodeIO/bcrypt.js)
 
 ---
 
 ## 如何在本機運行 (Getting Started)
 
-請依照以下步驟來設定並運行此專案。
-
 ### **事前準備**
-您需要先安裝好 [Node.js](https://nodejs.org/)。
-您也需要從 [MongoDB Atlas](https://www.mongodb.com/cloud/atlas) 取得您的 MongoDB 連線字串 (MONGO_URI) 和從 [PayPal Developer](https://developer.paypal.com/dashboard/) 取得您的 PayPal Client ID。
+* 安裝 [Node.js](https://nodejs.org/) (v18 或以上)
+* 取得 [MongoDB Atlas](https://www.mongodb.com/cloud/atlas) 連線字串 (MONGO_URI)
+* 取得 [PayPal Developer](https://developer.paypal.com/dashboard/) 的 Sandbox Client ID
 
 ### **安裝步驟**
 
@@ -74,7 +69,7 @@
     NODE_ENV=development
     PORT=5000
     MONGO_URI=您的MongoDB連線字串
-    JWT_SECRET=yoursecretkey123
+    JWT_SECRET=隨機的英數密鑰
     PAYPAL_CLIENT_ID=您的PayPal_Client_ID
     ```
     將範例資料匯入您的資料庫：
@@ -96,6 +91,7 @@
     ```bash
     npm run dev
     ```
+
 
 4.  **管理員帳號**
     * Email: `admin@example.com`
