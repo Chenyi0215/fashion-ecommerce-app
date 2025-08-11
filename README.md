@@ -1,6 +1,6 @@
 # 時尚電商平台 (StyleSphere - A Full-Stack E-Commerce Platform)
 
-這是一個使用 MERN 技術棧 (MongoDB, Express, React, Node.js) 加上 Next.js 框架，從零開始打造的全功能、響應式的時尚電商網站。專案靈感來自 ZARA，旨在展示一個完整的、真實世界的全端應用開發流程。
+這是一個使用 MERN 全端技術 (MongoDB, Express, React, Node.js) 加上 Next.js 框架，從零開始打造的全功能、響應式的時尚電商網站。旨在展示一個完整的、真實世界的全端應用開發流程。
 
 **➡️ 強烈建議：** 在這裡放上您部署後的線上 DEMO 連結！
 
