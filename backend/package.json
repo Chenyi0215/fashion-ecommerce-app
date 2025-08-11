@@ -4,18 +4,19 @@
   "description": "",
   "main": "index.js",
   "type": "module",
-"scripts": {
-  "start": "node server.js",
-  "server": "nodemon server.js",
-  "data:import": "node seeder.js",
-  "data:destroy": "node seeder.js -d"
-},
+  "scripts": {
+    "start": "node server.js",
+    "server": "nodemon server.js",
+    "data:import": "node seeder.js",
+    "data:destroy": "node seeder.js -d"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "dotenv": "^17.2.1",
     "express": "^5.1.0",
+    "express-async-handler": "^1.2.0",
     "mongoose": "^8.17.0"
   },
   "devDependencies": {
