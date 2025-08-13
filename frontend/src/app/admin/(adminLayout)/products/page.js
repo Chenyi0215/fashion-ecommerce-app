@@ -54,7 +54,6 @@ const AdminProductsPage = () => {
     }
   };
 
-
   return (
     <Row>
       <Col>
