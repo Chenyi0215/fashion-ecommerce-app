@@ -4,8 +4,7 @@ import { Row, Col } from 'react-bootstrap';
 const HomePage = async () => {
   // 這段程式碼在伺服器端執行，直接向後端 API 抓取資料
   // 因此不需要擔心瀏覽器的 CORS 跨域問題
-  const res = await fetch('http://localhost:5000/api/products', { cache: 'no-store' });
-  const products = await res.json();
+const res = await fetch(`${process.env.API_URL}/api/products`, { cache: 'no-store' });  const products = await res.json();
 
   return (
     <>

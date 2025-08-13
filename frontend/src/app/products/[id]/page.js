@@ -5,9 +5,7 @@ const ProductPage = async ({ params }) => {
   try {
     // ## 核心修正：直接在 fetch 中使用 params.id ##
     // 我們不再預先解構 const { id } = params;
-    const res = await fetch(`http://localhost:5000/api/products/${params.id}`, {
-      cache: 'no-store',
-    });
+    const res = await fetch(`${process.env.API_URL}/api/products/${params.id}`, { cache: 'no-store' });
 
     if (!res.ok) {
        return <ProductDetails product={null} />;
